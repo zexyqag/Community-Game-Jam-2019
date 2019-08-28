@@ -1,50 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
-public class DialogueManager: MonoBehaviour
-{
-    public TextMeshPro nameText;
-    public TextMeshPro dialogueText;
-    private Queue<string> sentences;
+public class DialogueManager : MonoBehaviour {
+	[SerializeField]private GameObject ConsoleObj, ChatObj;
+	private TextMeshProUGUI Console, Chat;
+	public static DialogueManager Instance;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        sentences = new Queue<string>();
-    }
+	private void Awake() {
+		Instance = this;
 
-    public void StartDialogue (Dialogue dialogue)
-    {
+		Console = ConsoleObj.GetComponent<TextMeshProUGUI>();
+		Chat = ChatObj.GetComponent<TextMeshProUGUI>();
+	}
 
-        nameText.text = dialogue.name;
 
-        sentences.Clear();
+	public void ConsoleAdd(string text) {
+		Console.text += "\n" + text;
+	}
+	public void ChatAdd(string text) {
+		Chat.text += "\n" + ">"+text;
+	}
 
-        foreach (string sentence in dialogue.sentences)
-        {
-            sentences.Enqueue(sentence);
-
-        }
-        DisplayNextSentence();
-
-    }
-    public void DisplayNextSentence ()
-    {
-        if (sentences.Count == 0)
-        {
-            EndDialogue();
-            return;
-        }
-
-        string sentence = sentences.Dequeue();
-        dialogueText.text = sentence;
-
-    }
-    void EndDialogue ()
-    {
-      // Debug.Log("Ending Conversation With " + dialogue.name);
-    }
 }

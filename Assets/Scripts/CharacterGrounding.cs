@@ -6,6 +6,7 @@ public class CharacterGrounding : MonoBehaviour {
 	SpriteRenderer spriteRenderer;
 	private Transform groundedObject;
 	public bool IsGrounded { get; private set; }
+	public bool IsInSafeSpace { get; private set; }
 
 	[SerializeField]
 	private LayerMask groundedLayer;
@@ -23,10 +24,13 @@ public class CharacterGrounding : MonoBehaviour {
 		origin = spriteRenderer.transform.position + (Vector3.down * spriteRenderer.size.y * 0.5f) - size.y * Vector3.up * 0.5f;
 
 		var raycastHit = Physics2D.BoxCast(origin, size, 0f, Vector2.zero, 0, groundedLayer);
+		IsInSafeSpace = false;
+		IsGrounded = false;
 		if(raycastHit.collider != null) {
+			if(raycastHit.collider.gameObject.CompareTag("StaticGameObject")) {
+				IsInSafeSpace = true;
+			}
 			IsGrounded = true;
-		} else {
-			IsGrounded = false;
 		}
 	}
 

@@ -15,6 +15,8 @@ public class CharacterController : MonoBehaviour {
 	private CharacterGrounding characterGrounding;
 	private PlayerInputManager playerInputManager;
 
+	private Vector3 lastSafeSpace;
+
 	private void Awake() {
 		rigidbody2D = GetComponent<Rigidbody2D>();
 		characterGrounding = GetComponent<CharacterGrounding>();
@@ -22,18 +24,15 @@ public class CharacterController : MonoBehaviour {
 	}
 
 	private void Update() {
-		if(playerInputManager.JumpDown && characterGrounding.IsGrounded) {
-			rigidbody2D.AddForce(Vector2.up * jumpForce * rigidbody2D.mass, ForceMode2D.Impulse);
-		} else if(playerInputManager.JumpUp && rigidbody2D.velocity.y >= 0) {
-			rigidbody2D.velocity *= Vector2.right;
-		}
+		jumpCharacter();
 
-		if(Input.GetKeyDown(KeyCode.K))
-			rigidbody2D.velocity = Vector2.left * 25;
+		if(characterGrounding.IsInSafeSpace) {
+			lastSafeSpace = transform.position;
+		}
 	}
 
 	private void FixedUpdate() {
-		moveCharacter(new Vector2(playerInputManager.direction.x, 0));
+		moveCharacter(new Vector2(playerInputManager.Direction.x, 0));
 	}
 
 	private void moveCharacter(Vector2 direction) {
@@ -52,6 +51,19 @@ public class CharacterController : MonoBehaviour {
 			if(direction.x * rigidbody2D.velocity.x < 0 || Mathf.Abs(rigidbody2D.velocity.x) < maxGroundSpeed) {
 				rigidbody2D.velocity += Vector2.right * direction.x * AirAcceleration * Time.deltaTime;
 			}
+		}
+	}
+
+	public void resetToLastSafeSpace() {
+		transform.position = lastSafeSpace;
+		rigidbody2D.velocity = Vector2.zero;
+	}
+
+	private void jumpCharacter() {
+		if(playerInputManager.JumpDown && characterGrounding.IsGrounded) {
+			rigidbody2D.AddForce(Vector2.up * jumpForce * rigidbody2D.mass, ForceMode2D.Impulse);
+		} else if(playerInputManager.JumpUp && rigidbody2D.velocity.y >= 0) {
+			rigidbody2D.velocity *= Vector2.right;
 		}
 	}
 }
