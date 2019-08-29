@@ -29,6 +29,8 @@ public class CharacterController : MonoBehaviour {
 		if(characterGrounding.IsInSafeSpace) {
 			lastSafeSpace = transform.position;
 		}
+
+
 	}
 
 	private void FixedUpdate() {
@@ -65,5 +67,9 @@ public class CharacterController : MonoBehaviour {
 		} else if(playerInputManager.JumpUp && rigidbody2D.velocity.y >= 0) {
 			rigidbody2D.velocity *= Vector2.right;
 		}
+	}
+
+	public float speed() {
+		return playerInputManager.Direction.x;
 	}
 }
