@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(CharacterGrounding))]
@@ -58,6 +59,11 @@ public class CharacterController : MonoBehaviour {
 
 	public void resetToLastSafeSpace() {
 		transform.position = lastSafeSpace;
+		rigidbody2D.velocity = Vector2.zero;
+	}
+
+	public void teleportPlayer(Vector2 spawnPoint) {
+		transform.position = spawnPoint;
 		rigidbody2D.velocity = Vector2.zero;
 	}
 
