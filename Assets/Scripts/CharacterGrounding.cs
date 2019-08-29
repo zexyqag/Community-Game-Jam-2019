@@ -9,7 +9,7 @@ public class CharacterGrounding : MonoBehaviour {
 	public bool IsInSafeSpace { get; private set; }
 
 	[SerializeField]
-	private LayerMask groundedLayer;
+	private LayerMask groundedLayer = 0;
 	private Vector2 origin, size, sizeOffsetY;
 
 
@@ -24,6 +24,7 @@ public class CharacterGrounding : MonoBehaviour {
 		origin = spriteRenderer.transform.position + (Vector3.down * spriteRenderer.size.y * 0.5f) - size.y * Vector3.up * 0.5f;
 
 		var raycastHit = Physics2D.BoxCast(origin, size, 0f, Vector2.zero, 0, groundedLayer);
+
 		IsInSafeSpace = false;
 		IsGrounded = false;
 		if(raycastHit.collider != null) {

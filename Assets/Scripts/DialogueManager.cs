@@ -2,23 +2,16 @@
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour {
-	[SerializeField]private GameObject ConsoleObj, ChatObj;
-	private TextMeshProUGUI Console, Chat;
+	[SerializeField] private TextMeshProUGUI Console = null, Chat = null;
 	public static DialogueManager Instance;
 
-	private void Awake() {
-		Instance = this;
-
-		Console = ConsoleObj.GetComponent<TextMeshProUGUI>();
-		Chat = ChatObj.GetComponent<TextMeshProUGUI>();
-	}
-
+	private void Awake() => Instance = this;
 
 	public void ConsoleAdd(string text) {
 		Console.text += "\n" + text;
 	}
 	public void ChatAdd(string text) {
-		Chat.text += "\n" + ">"+text;
+		Chat.text += "\n\n" + ">" + text;
 	}
 
 }

@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4252695947346776772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.11762, y: -2.9222457, z: -5.186004}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,12 +43,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3537e5c92db21944ca58ca00af5a97bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UpButton: 119
-  LeftButton: 97
-  DownButton: 115
-  RightButton: 100
-  UpButtonAlt: 273
-  LeftButtonAlt: 276
-  DownButtonAlt: 274
-  RightButtonAlt: 275
-  JumpButton: 32
+  controlsDictionary:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 0
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 0
+    _keyValues: 
+    _keys: 
+    _values: 

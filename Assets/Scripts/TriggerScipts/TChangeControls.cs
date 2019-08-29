@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
 public class TChangeControls : ATrigger {
-	[SerializeField] private ControlsDictionary controlsDictionary;
-	public override void Trigger(Collider2D collision) {
+	[SerializeField] private ControlsDictionary controlsDictionary = null;
+	public override void Trigger(GameObject collisionObject) {
 		PlayerInputManager.Instance.SetControlsDictionary(controlsDictionary);
 	}
 }
