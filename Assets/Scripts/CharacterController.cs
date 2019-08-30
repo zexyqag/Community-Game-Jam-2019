@@ -20,6 +20,7 @@ public class CharacterController : MonoBehaviour {
 	private Vector3 lastSafeSpace;
 
 	private void Awake() {
+		audioSource = GetComponent<AudioSource>();
 		rigidbody2D = GetComponent<Rigidbody2D>();
 		characterGrounding = GetComponent<CharacterGrounding>();
 		playerInputManager = FindObjectOfType<PlayerInputManager>();
