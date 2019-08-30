@@ -15,6 +15,7 @@ public class CharacterController : MonoBehaviour {
 	private new Rigidbody2D rigidbody2D;
 	private CharacterGrounding characterGrounding;
 	private PlayerInputManager playerInputManager;
+	private AudioSource audioSource;
 
 	private Vector3 lastSafeSpace;
 
@@ -70,6 +71,7 @@ public class CharacterController : MonoBehaviour {
 	private void jumpCharacter() {
 		if(playerInputManager.JumpDown && characterGrounding.IsGrounded) {
 			rigidbody2D.AddForce(Vector2.up * jumpForce * rigidbody2D.mass, ForceMode2D.Impulse);
+			audioSource.Play();
 		} else if(playerInputManager.JumpUp && rigidbody2D.velocity.y >= 0) {
 			rigidbody2D.velocity *= Vector2.right;
 		}
