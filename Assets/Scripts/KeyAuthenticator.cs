@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class KeyAuthenticator : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class KeyAuthenticator : MonoBehaviour
         {
             Debug.Log("Key Passed check");
             ErrorMSG.text = "";
+            SceneManager.LoadScene("test1");
+
         }
         else
         {
